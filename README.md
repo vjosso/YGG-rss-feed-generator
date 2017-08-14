@@ -19,4 +19,7 @@ exemple:
 - RSS Serie TV: https://maseedbox.com/ygg/rss.php?category=filmvideo&subcategory=serietv
 
 
-Pour rutorrent, il suffit de taper 'rss rutorrent' sur google pour savoir comment cela fonctionne.
+## Paye moi une bière !
+Si ce que j'ai fait te plait et que ça t'es utile, paye moi une bière ;)
+Paypal : https://paypal.me/guiisch
+ETH: 0xbE08c367280EF1b945c327419Afec474B5E1eff6
