@@ -7,8 +7,8 @@ Le script est basé sur YGG Crawler (https://github.com/atogeek/ygg_crawler), un
 Cloner le repo dans un répertoire, assurez vous que les bonnes permissions et les bons groupes soit appliqués.
 Ouvrez Ygg.php avec votre éditeur préféré et modifiez les lignes 93 et 94 pour renseigner votre couple login/pass
 
-```$this->login = 'login';
-$this->password = 'pass';```
+    $this->login = 'login';
+    $this->password = 'pass';
 
 ## Utilisation
 On peut générer un flux d'une catégorie ou d'une sous catégorie.
