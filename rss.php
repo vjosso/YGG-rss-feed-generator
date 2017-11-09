@@ -2,7 +2,7 @@
 
 require_once('Ygg.php');
 
-header("Content-Type: application/rss+xml; charset=ISO-8859-1");
+header("Content-Type: application/rss+xml; charset=UTF-8");
 
 $rssFeed = '<?xml version="1.0" encoding="iso-8859-1"?>';
 $rssFeed .= '<rss version="2.0">';
