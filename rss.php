@@ -4,7 +4,7 @@ require_once('Ygg.php');
 
 header("Content-Type: application/rss+xml; charset=UTF-8");
 
-$rssFeed = '<?xml version="1.0" encoding="iso-8859-1"?>';
+$rssFeed = '<?xml version="1.0" encoding="UTF-8"?>';
 $rssFeed .= '<rss version="2.0">';
 $rssFeed .= '<channel>';
 $rssFeed .= '<title>YGGtorrent - Guisch RSS generator</title>';
