@@ -37,7 +37,7 @@ if ($ygg->login()) {
     foreach ($ygg->getTorrents() as $torrent) {
         $rssFeed .= '<item>';
         $rssFeed .= '<title>' . $torrent['name'] .'</title>';
-        $rssFeed .= '<description>No desc for the moment :(</description>';
+        $rssFeed .= '<description><a href="' . $torrent['thref'] . '">' . $torrent['thref'] . '</a></description>';
         $rssFeed .= '<link>'. $parent_url . '/dl.php' . $torrent['href'] . '</link>';
         $rssFeed .= '<author>No author for the moment :(</author>';
         $rssFeed .= '<category>Movies & TV Show</category>';
