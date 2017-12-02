@@ -11,7 +11,7 @@ require_once('lib/simple_html_dom.php');
 
 class Ygg
 {
-    const BASE_URL = "https://yggtorrent.com";
+    const BASE_URL = "https://ww1.yggtorrent.com";
     const CATEGORY_FILMVIDEO = 2145;
     const CATEGORY_FILMVIDEO_ANIMATION = 'filmvideo/2178';
     const CATEGORY_FILMVIDEO_ANIMATIONSERIE = 'filmvideo/2179';
