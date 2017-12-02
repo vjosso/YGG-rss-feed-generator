@@ -467,7 +467,7 @@ class Ygg
                             $thref = $link->href;
                             $re = '/\/(?P<id>\d{6})\-/i';
                             preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
-                            $href = '?action=download&file=/engine/'.$matches['id'];
+                            $href = '?action=download&file=/engine/'.$matches[0]['id'];
                         }
                     }
 
