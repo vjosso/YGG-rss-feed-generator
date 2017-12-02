@@ -462,10 +462,12 @@ class Ygg
 
                             $name = $str;
                         }
-                        if (strpos($link->href, '?id=') !== false) {
-                            $href = explode('/', $link->href);
-                            $href = '/engine/' . $href[4];
-                            $href = '?action=download&file=' . $href;
+                        
+                        if (strpos($link->href, '/torrent/') !== false) {
+                            $thref = $link->href;
+                            $re = '/\/(?P<id>\d{6})\-/i';
+                            preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+                            $href = '?action=download&file=/engine/'.$matches['id'];
                         }
                     }
 
@@ -491,7 +493,8 @@ class Ygg
                         'size' => $size,
                         'date' => $date,
                         'seeds' => $seeds,
-                        'leechs' => $leechs
+                        'leechs' => $leechs,
+                        'thref' => $thref
                     );
                 }
             }
