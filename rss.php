@@ -38,9 +38,9 @@ if ($ygg->login()) {
         $rssFeed .= '<item>';
         $rssFeed .= '<title>' . $torrent['name'] .'</title>';
         $rssFeed .= '<description><a href="' . $torrent['thref'] . '">' . $torrent['thref'] . '</a></description>';
-        $rssFeed .= '<link>'. $parent_url . '/dl.php' . $torrent['href'] . '</link>';
+        $rssFeed .= '<link>'. $parent_url . '/dl.php?action=download&idt=' . $torrent['idt'] . '</link>';
         $rssFeed .= '<author>No author for the moment :(</author>';
-        $rssFeed .= '<category>Movies & TV Show</category>';
+        $rssFeed .= '<category>' . $_GET['category'] . ' - ' . $_GET['subcategory'] . '</category>';
         $rssFeed .= '<pubDate>' . date('Y-m-d H:i:s') . '</pubDate>';
         $rssFeed .= '</item>';
     }
