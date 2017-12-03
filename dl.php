@@ -4,8 +4,8 @@ require_once('Ygg.php');
 
 switch ($_GET['action']) {
     case 'download':
-        if (isset($_GET['file'])) {
-            download($_GET['file']);
+        if (isset($_GET['idt'])) {
+            download($_GET['idt']);
         }
         break;
 
@@ -15,16 +15,13 @@ switch ($_GET['action']) {
 }
 
 // SAMPLE -- download torrent
-function download($file)
+function download($idt)
 {
     $ygg = new Ygg();
-    if ($ygg->download($file)) {
+    if ($ygg->download($idt)) {
         $location = './dl/download.torrent';
-        $re = '/id=(\d{5,})/';
-        $str = $_GET['file'];
-        preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
         
-        header("Content-Disposition: attachment; filename=".$matches[0][1].".torrent");
+        header("Content-Disposition: attachment; filename=" . $idt . ".torrent");
 		header("Content-Type: application/force-download");
 		header("Content-Length: " . filesize($location));
 		header('Content-Transfer-Encoding: binary');
