@@ -463,15 +463,15 @@ class Ygg
                             $name = $str;
                         }
                         
-                        if (strpos($link->href, '/torrent/') !== false) {
+                        if (strpos($link->href, '/torrent/') !== false && strpos($link->href, '#comments') === false) {
                             $thref = $link->href;
                             $re = '/\/(?P<id>\d{6})\-/i';
                             preg_match_all($re, $thref, $matches, PREG_SET_ORDER, 0);
-                            $href = '?action=download&file=/engine/'.$matches[0]['id'];
+                            $idt = $matches[0]['id'];
                         }
                     }
 
-                    if (is_null($href) || is_null($name)) {
+                    if (is_null($idt) || is_null($name)) {
                         continue;
                     }
 
@@ -489,7 +489,7 @@ class Ygg
 
                     $this->torrents[] = array(
                         'name' => $name,
-                        'href' => $href,
+                        'idt' => $idt,
                         'size' => $size,
                         'date' => $date,
                         'seeds' => $seeds,
@@ -526,10 +526,10 @@ class Ygg
      * @return bool
      * @throws Exception
      */
-    public function download($url)
+    public function download($idt)
     {
         try {
-            if ($this->call('download', $url) !== false) {
+            if ($this->call('download', '/engine/download_torrent?id=' . $idt) !== false) {
                 return true;
             }
 
