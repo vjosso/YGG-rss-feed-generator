@@ -313,7 +313,7 @@ class Ygg
     public function login()
     {
         try {
-            if ($this->call('login', '/user/login') == "") {
+            if ($this->call('login', '/user/login') != "") {
                 if (($page = $this->call('basic', '')) !== false) {
                     $this->html = $this->open($page);
                     if ($this->findLink('/user/account')) {
