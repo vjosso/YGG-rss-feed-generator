@@ -48,7 +48,7 @@ if ($ygg->login()) {
             $rssFeed .= '</description>';
             $rssFeed .= '<link>'. $parent_url . '/dl.php?action=download&idt=' . $torrent['idt'] . '</link>';
             $rssFeed .= '<author>No author for the moment :(</author>';
-            $rssFeed .= '<category>' . $_GET['category'] . ' - ' . $_GET['subcategory'] . '</category>';
+            $rssFeed .= '<category>' . $_GET['category'] . ' - ' . $subcategory . '</category>';
             $rssFeed .= '<pubDate>' . date('Y-m-d H:i:s') . '</pubDate>';
             $rssFeed .= '</item>';
         }
