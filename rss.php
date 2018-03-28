@@ -40,6 +40,7 @@ if (isset($_GET['category'])) {
         $rssFeed .= '<title>' . $torrent['name'] .'</title>';
         $rssFeed .= '<description><![CDATA[ ';
         $rssFeed .= 'Link: <a href="' . $torrent['thref'] . '">' . $torrent['thref'] . '</a><br />';
+        $rssFeed .= 'Author: ' . $torrent['author'] . '<br />';
         $rssFeed .= 'Size: ' . $torrent['size'] . '<br />';
         $rssFeed .= 'Date: ' . $torrent['date'] . '<br />';
         $rssFeed .= 'Seeds: ' . $torrent['seeds'] . '<br />';
