@@ -462,12 +462,16 @@ class Ygg
 
                             $name = $str;
                         }
-                        
+
                         if (strpos($link->href, '/torrent/') !== false && strpos($link->href, '#comments') === false) {
                             $thref = $link->href;
                             $re = '/\/(?P<id>\d{1,10})\-/i';
                             preg_match_all($re, $thref, $matches, PREG_SET_ORDER, 0);
                             $idt = $matches[0]['id'];
+                        }
+
+                        if (strpos($link->href, '/profile/') !== false) {
+                            $author = $link->innertext;
                         }
                     }
 
@@ -494,7 +498,8 @@ class Ygg
                         'date' => $date,
                         'seeds' => $seeds,
                         'leechs' => $leechs,
-                        'thref' => $thref
+                        'thref' => $thref,
+                        'author' => $author
                     );
                 }
             }

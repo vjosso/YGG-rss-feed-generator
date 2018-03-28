@@ -28,35 +28,31 @@ $rssFeed .= '<generator>YGGtorrent - Guisch RSS generator</generator>';
 
 
 $ygg = new Ygg();
-if ($ygg->login()) {
-    if (isset($_GET['category'])) {
-        $subcategory = isset($_GET['subcategory']) ? $_GET['subcategory'] : NULL;
-        $category_id = $ygg::getCategoryId($_GET['category'], $subcategory);
-        $ygg->searchCategory($category_id);
+if (isset($_GET['category'])) {
+    $subcategory = isset($_GET['subcategory']) ? $_GET['subcategory'] : NULL;
+    $category_id = $ygg::getCategoryId($_GET['category'], $subcategory);
+    $ygg->searchCategory($category_id);
 
-        $parent_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']);
+    $parent_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']);
 
-        foreach ($ygg->getTorrents() as $torrent) {
-            $rssFeed .= '<item>';
-            $rssFeed .= '<title>' . $torrent['name'] .'</title>';
-            $rssFeed .= '<description>';
-            $rssFeed .= 'Link: <a href="' . $torrent['thref'] . '">' . $torrent['thref'] . '</a></br>';
-            $rssFeed .= 'Size: ' . $torrent['size'] . '</br>';
-            $rssFeed .= 'Date: ' . $torrent['date'] . '</br>';
-            $rssFeed .= 'Seeds: ' . $torrent['seeds'] . '</br>';
-            $rssFeed .= 'Leechs: ' . $torrent['leechs'];
-            $rssFeed .= '</description>';
-            $rssFeed .= '<link>'. $parent_url . '/dl.php?action=download&idt=' . $torrent['idt'] . '</link>';
-            $rssFeed .= '<author>No author for the moment :(</author>';
-            $rssFeed .= '<category>' . $_GET['category'] . ' - ' . $subcategory . '</category>';
-            $rssFeed .= '<pubDate>' . date('Y-m-d H:i:s') . '</pubDate>';
-            $rssFeed .= '</item>';
-        }
-    } else {
-        echo 'Unable to find category';   
+    foreach ($ygg->getTorrents() as $torrent) {
+        $rssFeed .= '<item>';
+        $rssFeed .= '<title>' . $torrent['name'] .'</title>';
+        $rssFeed .= '<description><![CDATA[ ';
+        $rssFeed .= 'Link: <a href="' . $torrent['thref'] . '">' . $torrent['thref'] . '</a><br />';
+        $rssFeed .= 'Size: ' . $torrent['size'] . '<br />';
+        $rssFeed .= 'Date: ' . $torrent['date'] . '<br />';
+        $rssFeed .= 'Seeds: ' . $torrent['seeds'] . '<br />';
+        $rssFeed .= 'Leechs: ' . $torrent['leechs'];
+        $rssFeed .= ' ]]></description>';
+        $rssFeed .= '<link>'. $parent_url . '/dl.php?action=download&idt=' . $torrent['idt'] . '</link>';
+        $rssFeed .= '<author>'.$torrent['author'].'</author>';
+        $rssFeed .= '<category>' . $_GET['category'] . ' - ' . $subcategory . '</category>';
+        $rssFeed .= '<pubDate>' . date('Y-m-d H:i:s') . '</pubDate>';
+        $rssFeed .= '</item>';
     }
 } else {
-    echo 'Unable to login. Please check your credentials';
+    echo 'Unable to find category';
 }
 
 $rssFeed .= '</channel>';
