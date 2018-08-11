@@ -31,23 +31,25 @@ class Ygg
     /**
      * Login and store cookie
      */
-    public function login()
-    {
-        try {
-            if ($this->call('login', '/user/login') != "") {
-                if (($page = $this->call('basic', '')) !== false) {
-                    $this->html = $this->open($page);
-                    if ($this->findLink('/user/account')) {
-                        return true;
-                    } else {
-                        throw new Exception('Unable to login');
-                    }
-                }
-            }
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
+     public function login()
+     {
+         try {
+             $logincall = $this->call('login', '/user/login');
+             if ($logincall == "") {
+                 $page = $this->call('basic', '');
+                 if ($page !== false) {
+                     $this->html = $this->open($page);
+                     if ($this->findLink('/user/account')) {
+                         return true;
+                     } else {
+                         throw new Exception('Unable to login');
+                     }
+                 }
+             }
+         } catch (Exception $e) {
+             throw new Exception($e->getMessage());
+         }
+     }
 
     /**
      * Generic cURL call
