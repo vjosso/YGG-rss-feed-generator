@@ -1,22 +1,18 @@
-# ygg rss feed generator
-
-YGG rss feed generator est un script php permettant de générer des flux rss des derniers torrents de YGGtorrent.
-Le script est basé sur YGG Crawler (https://github.com/atogeek/ygg_crawler), un peu modifié, créé par atogeek !
+# ygg rss feed downloader
 
 ## Installation
 Cloner le repo dans un répertoire, assurez vous que les bonnes permissions et les bons groupes soit appliqués.
-Ouvrez Ygg.php avec votre éditeur préféré et modifiez les lignes 93 et 94 pour renseigner votre couple login/pass
+Ouvrez Ygg.php avec votre éditeur préféré et modifiez les lignes pour renseigner votre couple login/pass
 
+```
     $this->login = 'login';
     $this->password = 'pass';
+```
 
 ## Utilisation
-On peut générer un flux d'une catégorie ou d'une sous catégorie.
-Les noms des catégories et sous catégories sont les mêmes que sur le site mais en minuscule, sans espace ni caractères spéciaux.
-
-exemple:
-- RSS Film: https://maseedbox.com/ygg/rss.php?category=filmvideo&subcategory=film
-- RSS Serie TV: https://maseedbox.com/ygg/rss.php?category=filmvideo&subcategory=serietv
+Mettez les liens officiels YGG du RSS dans rutorrent, par exemple ```https://yggtorrent.is/rss?type=2&parent_category=2145&sub_category=2184``` pour les séries.
+Il faut créer une règles de remplacement des URL dans le flux rss. Choisir 'Si l'URL du torrent à charger correspond au modèle' et mettre ```/https:\/\/.{3}.yggtorrent\.is\/engine\/torrent_generator\/torrent_file\?torrent=(\d+)\/pass/i```
+Puis choisir 'alors replacer l'URL du torrent à charger par' et mettre le lien ceci en remplaçant par votre IP/domaine ```https://monserveur.com/yggrss/dl.php?action=download&idt=${1}```
 
 #### Paye moi une bière !
 Si ce que j'ai fait te plait et que ça t'es utile, paye moi une bière ;)
