@@ -10,9 +10,16 @@ Ouvrez Ygg.php avec votre éditeur préféré et modifiez les lignes pour rensei
 ```
 
 ## Utilisation
-Mettez les liens officiels YGG du RSS dans rutorrent, par exemple ```https://yggtorrent.is/rss?type=2&parent_category=2145&sub_category=2184``` pour les séries.
-Il faut créer une règles de remplacement des URL dans le flux rss. Choisir 'Si l'URL du torrent à charger correspond au modèle' et mettre ```/https:\/\/.{3}.yggtorrent\.is\/engine\/torrent_generator\/torrent_file\?torrent=(\d+)\/pass/i```
-Puis choisir 'alors replacer l'URL du torrent à charger par' et mettre le lien ceci en remplaçant par votre IP/domaine ```https://monserveur.com/yggrss/dl.php?action=download&idt=${1}```
+Mettez les liens officiels YGG du RSS dans rutorrent, par exemple https://yggtorrent.is/rss?type=2&parent_category=2145&sub_category=2184 pour les séries.
+
+Il faut créer une règles de remplacement des URL dans le flux rss. Choisir ```Si l'URL du torrent à charger correspond au modèle``` et mettre
+```
+/https:\/\/.{3}.yggtorrent\.is\/engine\/torrent_generator\/torrent_file\?torrent=(\d+)\/pass/i
+```
+Puis choisir ```alors replacer l'URL du torrent à charger par``` et mettre le lien ceci en remplaçant par votre IP/domaine
+```
+https://monserveur.com/yggrss/dl.php?action=download&idt=${1}
+```
 
 #### Paye moi une bière !
 Si ce que j'ai fait te plait et que ça t'es utile, paye moi une bière ;)
