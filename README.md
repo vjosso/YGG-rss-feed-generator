@@ -2,11 +2,14 @@
 
 ## Installation
 Cloner le repo dans un répertoire, assurez vous que les bonnes permissions et les bons groupes soit appliqués.
-Ouvrez Ygg.php avec votre éditeur préféré et modifiez les lignes pour renseigner votre couple login/pass
+Renomez config.default.php en config.php avec votre éditeur préféré et modifiez les lignes pour renseigner votre couple login/pass. Vous pouvez également passez sync à ```true``` si vous souhaitez que le script fetch l'URL de YGG directement sur github, sinon, le script utilisera l'url présente dans le fichier domain
 
 ```
-    $this->login = 'login';
-    $this->password = 'pass';
+return array(
+    'user' => 'user',
+    'pass' => 'pass',
+    'sync' => false
+);
 ```
 
 ## Utilisation

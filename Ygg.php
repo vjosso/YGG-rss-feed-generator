@@ -25,10 +25,10 @@ class Ygg
     {
         $configs = include('config.php');
         if($configs['sync']) {
-          $this->baseUrl = $this->call('basic', 'https://raw.githubusercontent.com/Guisch/YGG-rss-feed-downloader/master/domain');
+          $this->baseUrl = trim($this->call('basic', 'https://raw.githubusercontent.com/Guisch/YGG-rss-feed-downloader/master/domain'));
         } else {
           $myfile = fopen('domain', 'r');
-          $this->baseUrl = fread($myfile, filesize('domain'));
+          $this->baseUrl = trim(fread($myfile, filesize('domain')));
           fclose($myfile);
         }
 
