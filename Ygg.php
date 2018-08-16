@@ -11,7 +11,7 @@ require_once('lib/simple_html_dom.php');
 
 class Ygg
 {
-    const BASE_URL = "https://ww3.yggtorrent.is";
+    const BASE_URL = "https://ww4.yggtorrent.is";
 
     private $html;
     private $login;
