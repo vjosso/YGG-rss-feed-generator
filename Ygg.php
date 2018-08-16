@@ -27,7 +27,9 @@ class Ygg
         if($configs['sync']) {
           $this->baseUrl = $this->call('basic', 'https://raw.githubusercontent.com/Guisch/YGG-rss-feed-downloader/master/domain');
         } else {
-          $this->baseUrl = fopen('domain', 'r');
+          $myfile = fopen('domain', 'r');
+          $this->baseUrl = fread($myfile, filesize('domain'));
+          fclose($myfile);
         }
 
         $this->login = $configs['user'];
