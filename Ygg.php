@@ -11,8 +11,7 @@ require_once('lib/simple_html_dom.php');
 
 class Ygg
 {
-    const BASE_URL = "https://ww4.yggtorrent.is";
-
+    private $baseUrl;
     private $html;
     private $login;
     private $password;
@@ -24,8 +23,15 @@ class Ygg
      */
     public function __construct()
     {
-        $this->login = 'login';
-        $this->password = 'pass';
+        $configs = include('config.php');
+        if($configs['sync']) {
+          $this->baseUrl = $this->call('basic', 'https://raw.githubusercontent.com/Guisch/YGG-rss-feed-downloader/master/domain');
+        } else {
+          $this->baseUrl = fopen('domain', 'r');
+        }
+
+        $this->login = $configs['user'];
+        $this->password = $configs['pass'];
     }
 
     /**
@@ -34,9 +40,9 @@ class Ygg
      public function login()
      {
          try {
-             $logincall = $this->call('login', '/user/login');
+             $logincall = $this->call('login', $this->baseUrl . '/user/login');
              if ($logincall == "") {
-                 $page = $this->call('basic', '');
+                 $page = $this->call('basic', $this->baseUrl);
                  if ($page !== false) {
                      $this->html = $this->open($page);
                      if ($this->findLink('/user/account')) {
@@ -54,17 +60,16 @@ class Ygg
     /**
      * Generic cURL call
      * @param $type
-     * @param $path
+     * @param $url
      * @return mixed
      * @throws Exception
      */
-    private function call($type, $path)
+    private function call($type, $url)
     {
         try {
             // create curl resource
             $ch = curl_init();
 
-            $url = self::BASE_URL . $path;
             if ($type == 'login') {
                 $datas = "id=" . urlencode($this->login) . "&pass=" . urlencode($this->password);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $datas);
@@ -155,7 +160,7 @@ class Ygg
     public function download($idt)
     {
         try {
-            if ($this->call('download', '/engine/download_torrent?id=' . $idt) !== false) {
+            if ($this->call('download', $this->baseUrl . '/engine/download_torrent?id=' . $idt) !== false) {
                 return true;
             }
 
