@@ -13,11 +13,11 @@ return array(
 ```
 
 ## Utilisation
-Mettez les liens officiels YGG du RSS dans rutorrent, par exemple https://yggtorrent.is/rss?type=2&parent_category=2145&sub_category=2184 pour les séries.
+Mettez les liens officiels YGG du RSS dans rutorrent, par exemple https://ww4.yggtorrent.is/rss?action=generate&type=subcat&id=2184&passkey=xxx pour les séries.
 
 Il faut créer une règles de remplacement des URL dans le flux rss. Choisir ```Si l'URL du torrent à charger correspond au modèle``` et mettre
 ```
-/https:\/\/.{3}.yggtorrent\.is\/engine\/torrent_generator\/torrent_file\?torrent=(\d+)\/pass/i
+/https:\/\/.{3}.yggtorrent\.is\/rss\/download\?id=(\d+)\&passkey=(.*)/i
 ```
 Puis choisir ```alors replacer l'URL du torrent à charger par``` et mettre le lien ceci en remplaçant par votre IP/domaine
 ```
